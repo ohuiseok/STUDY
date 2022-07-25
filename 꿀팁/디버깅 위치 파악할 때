@@ -1,0 +1,9 @@
+__LINE__
+new Throwable().getStackTrace()[0].getLineNumber();
+
+__FUNCTION__
+new Throwable().getStackTrace()[0].getMethodName();
+
+그리고 class name은
+this.getClass().getName();
+ * 
