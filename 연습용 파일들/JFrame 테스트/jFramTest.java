@@ -1,10 +1,6 @@
-package io.velog.JFrameTest;
-
-
-import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Label;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
@@ -17,7 +13,6 @@ import java.awt.event.WindowListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /*
@@ -116,17 +111,29 @@ class KeboadSetting implements KeyListener{
 	
 }
 
+class MyPanel extends JPanel {
+	private ImageIcon background = new ImageIcon(getClass().getClassLoader().getResource("images\\\\whale.jpg"));
+
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g); 
+		Image img = background.getImage();
+		//g.drawImage(img, 0, 0, null);
+		g.drawImage(img, 0, 0, super.getWidth(), super.getHeight(), 0, 0, img.getWidth(null), img.getHeight(null), null);
+
+	}
+}
 class FrameSetting extends JFrame{
 	
-	private ImageIcon img1 = new ImageIcon(getClass().getClassLoader().getResource("background.jpg"));
-	private ImageIcon background = new ImageIcon(getClass().getClassLoader().getResource("background.jpg"));
+	private ImageIcon img1 = new ImageIcon(getClass().getClassLoader().getResource("images\\whale.jpg"));
+	private ImageIcon background = new ImageIcon(getClass().getClassLoader().getResource("images\\\\whale.jpg"));
 	//private Image background=new ImageIcon(getClass().getClassLoader().getResource("background.jpg")).getImage();
 	
 	
 	public FrameSetting() {
 		super();
 		
-		
+
+		setContentPane(new MyPanel()); 
 		//창 열리고 닫고..
 		WindowSetting ws = new WindowSetting();
 		
@@ -168,11 +175,7 @@ class FrameSetting extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
-	
 
-//	public void paint(Graphics g) {//그리는 함수
-//		g.drawImage(background, 0, 0, null);//background를 그려줌
-//	}
 }
 
 public class jFramTest  {
@@ -186,5 +189,3 @@ public class jFramTest  {
 	}
 
 }
-
-
