@@ -1,3 +1,5 @@
+package test;
+
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -14,6 +16,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JRootPane;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.plaf.ColorUIResource;
+import javax.swing.plaf.metal.DefaultMetalTheme;
+import javax.swing.plaf.metal.MetalLookAndFeel;
 
 /*
  * https://www.javatpoint.com/java-swing
@@ -111,9 +119,13 @@ class KeboadSetting implements KeyListener{
 	
 }
 
-class MyPanel extends JPanel {
-	private ImageIcon background = new ImageIcon(getClass().getClassLoader().getResource("images\\\\whale.jpg"));
-
+class Background extends JPanel {
+	private ImageIcon background;
+	
+	public Background(ImageIcon b) {
+		this.background=b;
+	}
+	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g); 
 		Image img = background.getImage();
@@ -122,18 +134,70 @@ class MyPanel extends JPanel {
 
 	}
 }
+
+
+/**
+ * @author SSAFY
+ * 타이틀 바 관련 클래스
+ */
+class changeTheme extends DefaultMetalTheme {
+    public ColorUIResource getWindowTitleInactiveBackground() {
+      return new ColorUIResource(java.awt.Color.green);
+    }
+  
+    public ColorUIResource getWindowTitleBackground() {
+      return new ColorUIResource(java.awt.Color.green);
+    }
+  
+    public ColorUIResource getPrimaryControlHighlight() {
+      return new ColorUIResource(java.awt.Color.green);
+    }
+  
+    public ColorUIResource getPrimaryControlDarkShadow() {
+      return new ColorUIResource(java.awt.Color.green);
+    }
+  
+    public ColorUIResource getPrimaryControl() {
+      return new ColorUIResource(java.awt.Color.green);
+    }
+  
+    public ColorUIResource getControlHighlight() {
+      return new ColorUIResource(java.awt.Color.green);
+    }
+  
+    public ColorUIResource getControlDarkShadow() {
+      return new ColorUIResource(java.awt.Color.green);
+    }
+  
+    public ColorUIResource getControl() {
+      return new ColorUIResource(java.awt.Color.green);
+    }
+}
+
+
 class FrameSetting extends JFrame{
 	
-	private ImageIcon img1 = new ImageIcon(getClass().getClassLoader().getResource("images\\whale.jpg"));
 	private ImageIcon background = new ImageIcon(getClass().getClassLoader().getResource("images\\\\whale.jpg"));
-	//private Image background=new ImageIcon(getClass().getClassLoader().getResource("background.jpg")).getImage();
-	
+	private ImageIcon img1 = new ImageIcon(getClass().getClassLoader().getResource("images\\whale.jpg"));
 	
 	public FrameSetting() {
 		super();
 		
-
-		setContentPane(new MyPanel()); 
+		//배경 이미지 변경
+		setContentPane(new Background(background));
+		
+		//타이틀바 관련
+//		setUndecorated(true);// 원래 타이틀바 제거
+//		getRootPane().setWindowDecorationStyle(JRootPane.FRAME);
+//		MetalLookAndFeel.setCurrentTheme(new changeTheme());
+//		try {
+//	          UIManager.setLookAndFeel(new MetalLookAndFeel());
+//	        } catch (Exception e) {
+//	          e.printStackTrace();
+//	    }
+//		SwingUtilities.updateComponentTreeUI(this);
+	    
+		
 		//창 열리고 닫고..
 		WindowSetting ws = new WindowSetting();
 		
@@ -145,6 +209,7 @@ class FrameSetting extends JFrame{
 		b1.setBounds(100, 100, 100, 40);
 		b1.addActionListener(hd);
 		b1.setIcon(img1);
+		
 		//keyboard
 		KeboadSetting ks = new KeboadSetting();
 				
@@ -162,6 +227,9 @@ class FrameSetting extends JFrame{
 		tf1.addActionListener(hd);
 		tf1.addKeyListener(ks);			//텍스트필드에 키보드 핸들러 세팅
 				
+		//icon change
+		this.setIconImage(img1.getImage());
+		
 		//frame setting
 		add(b1);
 		add(label1);
@@ -171,13 +239,17 @@ class FrameSetting extends JFrame{
 		setVisible(true);
 		setTitle("jframe 테스트");
 		addWindowListener(ws);	// 윈도우 세팅
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 
 }
 
+/**
+ * @author SSAFY
+ *
+ */
 public class jFramTest  {
 
 	
