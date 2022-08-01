@@ -1,0 +1,32 @@
+
+(1)
+BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+char[] ch = in.readLine().toCharArray();	//문자로 나누기
+
+StringTokenizer st = new StringTokenizer(in.readLine()," ");//두글자 이상일 경우
+int j = Integer.parseInt(st.nextToken());//
+
+(2)
+StringBuilder sb = new StringBuilder();
+sb.append("");
+sb.toString();
+
+
+(3) 표준 입출력의 대상 변경
+System.setOut()
+System.setIn()		(ex) System.setIn(new FileInputStream(""));
+System.setErr()
+
+/*
+Scanner보다 BufferedReader와 StringTokenizer을 사용한다.
+Scanner는 대량의 데이터 처리 시 수행시간이 비효율적임..(데이터를 구분자로 토큰화하여 다양한 타입으로 형변환하여 주기 때문에 시간딜레이가 발생)
+(또한 ) Scanner 사용시 nextInt , nextLine을 이어서 사용하면 문제가 발생하는 경우가 많다.
+이유는 무언가 입력후 엔터를 누르는 동시에, 엔터값은 nextLine에서 읽어들이기 때문이다.
+따라서 굳이 사용하고 싶으면, nextInt + nextLine,nextLine 으로 읽어야 한다. 
+
+
+
+System.in
+System.out
+System.err
+*/
