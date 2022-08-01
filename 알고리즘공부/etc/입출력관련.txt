@@ -24,6 +24,10 @@ Scanner는 대량의 데이터 처리 시 수행시간이 비효율적임..(데�
 이유는 무언가 입력후 엔터를 누르는 동시에, 엔터값은 nextLine에서 읽어들이기 때문이다.
 따라서 굳이 사용하고 싶으면, nextInt + nextLine,nextLine 으로 읽어야 한다. 
 
+String에 바로 literal pool로 바로 넣으면, 시간 소모가 커진다. (추가로 데이터를 더 입력하면 더 오래걸린다.)
+따라서, StringBuilder의 append기능을 사용한다.
+
+
 
 
 System.in
