@@ -17,6 +17,13 @@ System.setOut()
 System.setIn()		(ex) System.setIn(new FileInputStream(""));
 System.setErr()
 
+(4) 출력할때 (2)번을 써도 좋고
+BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+bw.write("\n");
+bw.flush(); 
+bw.close();
+
+
 /*
 Scanner보다 BufferedReader와 StringTokenizer을 사용한다.
 Scanner는 대량의 데이터 처리 시 수행시간이 비효율적임..(데이터를 구분자로 토큰화하여 다양한 타입으로 형변환하여 주기 때문에 시간딜레이가 발생)
