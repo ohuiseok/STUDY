@@ -1,0 +1,54 @@
+
+자료구조 관련
+(1)	Queue<Integer> queue = new LinkedList<>();
+(2)	Deque<String> deque= new ArrayDeque<>();
+(3)	Stack<Integer>stack = new Stack<Integer>();
+(4)	Map<String,Integer> map=new HashMap(); 
+(5)	List<String> list = new ArrayList<>():
+(6)	PriorityQueue<Integer> priorityQueue = new PriorityQueue<>(); // 오름차순
+
+사용법
+(1)	Queue 입출력 
+	A.	뒤에 입력 : add	
+	B.	앞에서 뽑아서 출력 : offer	(
+(2)	Deque 입출력
+	A.	앞에 입력 : addFirst() /offerFirst()
+	B.	뒤에 입력 : add() / addLast() / offerLast()
+	C.	앞에서 뽑아서 출력 : pollFirst() (없으면 null)	
+	D.	뒤에서 뽑아서 출력 : pollLast() (없으면 null)
+(3)	Stack 입출력 
+	A.	뒤에 입력 : push()
+	B.	뒤에 뽑아서 출력 : pop()
+	C.	맨 뒤 확인 : peek	
+(4)	Map 입출력 및 존재여부 확인, key값 순회, 합치기
+	A.	 입력 : put
+	B.	 출력 : get
+	C.	 키값 존재 여부 확인 : containsKey //bolean
+	D.	for(String key:map.keySet()) : map이라는 hashmap에서 키값 순회
+	E.	병합 : map2.putAll(map1); map2에 map1을 더해짐
+(5)	List
+	A.	입력 : add
+	B.	출력 : get
+(6)	입출력 및 주요 사용법
+	A.	우선순위대로 저장 : add
+	B.	우선순위대로 앞에서 뽑아서 출력 : poll
+	C.	우선순위 맨 앞 확인 : peek
+
+
+
+우선순위 변경해서 저장
+PriorityQueue<Integer> pq = new PriorityQueue<Integer>(new Comparator<Integer>() {
+@Override
+	public int compare(Integer o1, Integer o2) {					
+		if(Math.abs(o1) > Math.abs(o2)) {			//절대값 기준으로 앞 값이 더 크다면 자리를 바꿔준다.
+			return Math.abs(o1) - Math.abs(o2);		
+		}else if(Math.abs(o1) == Math.abs(o2)) {		//절대값 기준으로 두 값이 같다면 음수를 앞으로 보내준다.
+			return o1 - o2;
+		}else {
+			return -1;
+		}
+	}
+});
+
+
+
