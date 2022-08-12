@@ -1,56 +1,63 @@
 던질지
 
 중복순열 (자기자신 가능 (AA가능)) , 순서 중요
-private static void dice1(int cnt){
-	if(cnt == N){
-		totalCnt++;
-		System.out.println(Arrays.toString(numbers));
-		return;
-	}
-	for(int i = 1; i<= 6; i++ ){
-		numbers[cnt] = i;
-		dice1(cnt+1);
-	}
-}
+    public static void dice1(int cnt) {
+        if(cnt == N) {
+        	++totalCnt;
+            print();
+            return;
+        }
+        for(int i=1; i<=6; ++i) {
+            numbers[cnt] = i;
+            dice1(cnt+1);
+        }
+    }
+    //
+
 순열 (자기자신 불가능) , 순서 중요
-private static void dice1(int cnt){
-	if(cnt == N){
-		totalCnt++;
-		System.out.println(Arrays.toString(numbers));
-		return;
-	}
-	for(int i = 1; i<= 6; i++ ){
-		if(isSelected[i]) continue;
-		numbers[cnt] = i;
-		isSelected[i]=true;
-		dice1(cnt+1);
-		isSelected[i]=false;
-	}
-}
+private static void dice2(int cnt) {
+    	if (cnt == N) {
+    		++totalCnt;
+    		print();
+    		return;
+    	}
+    	for (int i = 1; i <= 6; i++) {
+    		if (isSelected[i]) continue;
+    		numbers[cnt] = i;
+    		isSelected[i] = true;
+    		dice2(cnt + 1);
+    		isSelected[i] = false;
+    	}
+    }
+
 중복조합 (자기자신 가능 (AA가능)) , 순서 의미 x(AB=BA같음) 
-private static void dice3(int cnt,int start){
-	if(cnt == N){
-		totalCnt++;
-		System.out.println(Arrays.toString(numbers));
-		return;
-	}
-	for(int i = 1; i<= 6; i++ ){
-		numbers[cnt] = i;
-		dice3(cnt+1,i);
-	}
-}
+ public static void dice3(int cnt,int start) {
+        if(cnt == N) {
+        	++totalCnt;
+            print();
+            return;
+        }
+        
+        for(int i=start; i<=6; ++i) { // 112  -->중복 121 211
+            numbers[cnt] = i;
+            dice3(cnt+1,i);//현재수와 같은 수부터 처리하도록 전달
+        }
+}  
+
 조합  (자기자신 불가능) , 순서 의미 x(AB=BA같음) 
-private static void dice4(int cnt,int start){
-	if(cnt == N){
-		totalCnt++;
-		System.out.println(Arrays.toString(numbers));
-		return;
-	}
-	for(int i = 1; i<= 6; i++ ){
-		numbers[cnt] = i;
-		dice4(cnt+1,start+1);
+public static void dice4(int cnt,int start) {
+    	if(cnt==N) {
+    		++totalCnt;
+    		print();
+    		return;
+    	}
+    	for (int i = start; i <= 6; i++) {
+			numbers[cnt]=i;
+			dice4(cnt+1,i+1);//현재수 다음 수부터 처리하도록 전달
+		}
 	}
 }
+
 부분집합
 private static void subset(int index){	//두가지 경우의 수가 반복될때 사용될 수 있음
 	if(index == N){	
