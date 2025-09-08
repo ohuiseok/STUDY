@@ -1,0 +1,19 @@
+TreeMap<Integer, Integer> map = new TreeMap<>();
+
+// 삽입
+map.put(5, map.getOrDefault(5, 0) + 1);
+map.put(10, map.getOrDefault(10, 0) + 1);
+map.put(5, map.getOrDefault(5, 0) + 1);  // 중복 허용
+
+int min = map.firstKey();   // 최소값
+int max = map.lastKey();    // 최대값
+
+
+Integer count = countMap.get(key);  // Integer로 받기
+if (count != null) {
+    if (count > 1) {
+        countMap.put(key, count - 1);
+    } else {
+        countMap.remove(key);
+    }
+}
